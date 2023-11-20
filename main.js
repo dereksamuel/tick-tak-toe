@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-undef */
-const cpuIcon = '0'
+const cpuIcon = 'O'
 const playerIcon = 'X'
 let AIMove
 // settings for liveBoard: 1 is cpuIcon, -1 is playerIcon, 0 is empty
@@ -20,6 +20,7 @@ const winningLines = [
 function renderBoard (board) {
   board.forEach(function (el, i) {
     const squareId = '#' + i.toString()
+    // eval if is player el, then show player's icon
     if (el === -1) {
       $(squareId).text(playerIcon)
     } else if (el === 1) {
