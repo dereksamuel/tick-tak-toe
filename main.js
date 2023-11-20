@@ -40,6 +40,7 @@ function animateWinLine () {
       return prev + cur
     })
   })
+  // it gets which index of my matrix is that wins
   const squaresToAnimate = winningLines[idxOfArray.indexOf(Math.abs(3))]
 
   squaresToAnimate.forEach(function (el) {
@@ -87,7 +88,6 @@ function chooseMarker () {
       $('#counter-cpu').text(getItem('counter-cpu') || 0)
       $('#plays').text(getItem('plays') || 0)
       $('#turn-name').text(getItem('playerInfo').name)
-      startNewGame()
       startNewGame()
     }, 700)
 
