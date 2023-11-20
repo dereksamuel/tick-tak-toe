@@ -181,10 +181,12 @@ function aiTakeTurn () {
 
 // UTILITIES
 function checkVictory (board) {
+  // evaluates which squares are not empty
   const squaresInPlay = board.reduce(function (prev, cur) {
     return Math.abs(prev) + Math.abs(cur)
   })
 
+  // evaluates who wins
   const outcome = winningLines.map(function (winLines) {
     return winLines.map(function (winLine) {
       return board[winLine]
@@ -208,6 +210,7 @@ function checkVictory (board) {
 
 function availableMoves (board) {
   return board.map(function (el, i) {
+    // checks if where is 0 can move
     if (!el) {
       return i
     }
@@ -238,7 +241,9 @@ function miniMax (state, player) {
     return 0
   }
 
+  // is an available moves array
   const moves = []
+  // Scores catch or have 10, -10 or any point in which he wins or lose, almacenar todos los puntajes posibles en los que el perdera o ganaria o empataria
   const scores = []
   // for each of the available squares: recursively make moves and push the score + accompanying move to the moves + scores array
   availableMoves(state).forEach(function (square) {
@@ -251,9 +256,11 @@ function miniMax (state, player) {
   // calculate and return the best score gathered from each of the available moves. track the best movein the AIMove letiable
 
   if (player === 'aiPlayer') {
+    // gets score 10(win), 0(draw) or -10(lose) index in that way, preferencia ganar, apunta a lo mas alto para ATACAR
     AIMove = moves[scores.indexOf(Math.max.apply(Math, scores))]
     return Math.max.apply(Math, scores)
   } else {
+    // gets score -10(lose), 0(draw), 10(win) or index in that way, preferencial defender
     AIMove = moves[scores.indexOf(Math.min.apply(Math, scores))]
     return Math.min.apply(Math, scores)
   }
